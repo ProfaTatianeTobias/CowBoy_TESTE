@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head>
+    <script src="./lib/p5.js"></script>
+    <script src="./lib/p5.dom.min.js"></script>
+    <script src="./lib/p5.sound.min.js"></script>
+    <script src="./lib/p5.play.js"></script>
+
+    <script src="./js/Form.js"></script>
+    <script src="./js/Player.js"></script>
+    <script src="./js/Game.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+
+     <!-- Firebase SDK 
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCAec_ChYXj36dE3CF81OcjrHo4aJUZ4s",
+      authDomain: "jogo-jvc.firebaseapp.com",
+      projectId: "jogo-jvc",
+      storageBucket: "jogo-jvc.appspot.com",
+      messagingSenderId: "336779368277",
+      appId: "1:336779368277:web:0658084ae32534604001dc",
+      measurementId: "G-37CYGQ50J5"
+    };
+    
+    -->
+
+     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+    <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCAec_ChYXj36dE3CF81OcjrHo4aJUZ4s",
+      authDomain: "jogo-jvc.firebaseapp.com",
+      databaseURL: "https://jogo-jvc-default-rtdb.firebaseio.com",
+      projectId: "jogo-jvc",
+      storageBucket: "jogo-jvc.appspot.com",
+      messagingSenderId: "336779368277",
+      appId: "1:336779368277:web:0658084ae32534604001dc",
+      measurementId: "G-37CYGQ50J5"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+  </script>
+
+  </head>
+  <body>
+      <script src="sketch.js"></script>
+  
+
+</body></html>
