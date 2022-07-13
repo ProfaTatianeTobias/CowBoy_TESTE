@@ -22,7 +22,7 @@ var balaInimigo;
 var balaInimigoImg;
 var database;
 var game, form, player, playerCount, gameState;
-var allPlayers, jogadores;
+var allPlayers, jogadores=[];
 var acerto=false;
 var tempoCowboy = 0;
 var tempoInimigo = 0;

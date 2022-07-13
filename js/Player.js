@@ -2,8 +2,8 @@ class Player {
     constructor() {
       this.name = null;
       this.index = null;
-      this.balaX = 0;
-      this.balaY = 0;
+      this.positionX = 0; //bala
+      this.positionY = 0; //bala
       this.time = 0;
       this.winner = 0;
     }
@@ -12,17 +12,17 @@ class Player {
       var playerIndex = "players/player" + this.index;
   
       if (this.index === 1) {
-        this.balaX = width/4+43;
-        this.balaY = height-80;
+        this.positionX = width/4+43;
+        this.positionY = height-80;
       } else {
-        this.balaX = width-335;
-        this.balaY = height-55;
+        this.positionX = width-285;
+        this.positionY = height-55;
       }
   
       database.ref(playerIndex).set({
         name: this.name,
-        balaX : this.balaX,
-        balaY : this.balaY,
+        positionX : this.positionX,
+        positionY : this.positionY,
         time: this.time,
       });
     }
@@ -44,8 +44,8 @@ class Player {
     update() {
       var playerIndex = "players/player" + this.index;
       database.ref(playerIndex).update({
-        balaX : this.balaX,
-        balaY : this.balaY,
+        positionX : this.positionX,
+        positionY : this.positionY,
         time: this.time,
       });
     }
@@ -61,8 +61,8 @@ class Player {
       var balaTiroRef = database.ref("players/player" + this.index);
       balaTiroRef.on("value", data => {
         var data = data.val();
-        this.balaX = data.balaX;
-        this.balaY = data.balaY;
+        this.positionX = data.positionX;
+        this.positionY = data.positionY;
       });
     }
 

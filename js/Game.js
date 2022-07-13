@@ -7,7 +7,7 @@ class Game {
       this.reset = createButton("Reset");
       this.sequencia = createElement("h2");
       this.mensagemFinal = createElement("h2");
-      this.balaMovendo = false;
+      //this.balaMovendo = false;
     }
   
     gameMousePressed() {
@@ -42,7 +42,7 @@ class Game {
       cowboy = createSprite(width/4,height-90,10,30);
       cowboy.addImage(cowboyImg);
 
-      indio = createSprite(width/2,height-150,10,10);
+      indio = createSprite(width/2-30,height-150,10,10);
       indio.addImage("indio", indioImg);
       indio.addImage("indioB", indioBImg);
       indio.addImage("indioC", indioCImg);
@@ -50,7 +50,7 @@ class Game {
 
       edges=createEdgeSprites();
 
-      bandido=createSprite(width-300,height-80,10,20);
+      bandido=createSprite(width-250,height-80,10,20);
       bandido.addImage(bandidoImg);
       bandido.scale = 1.3;
 
@@ -62,10 +62,10 @@ class Game {
       bala.scale=0.01;
       bala.visible=false;
 
-      armaInimigo=createSprite(width-330,height-55,10,30);
+      armaInimigo=createSprite(width-280,height-55,10,30);
       armaInimigo.addImage(armaInimigoImg);
       
-      balaInimigo=createSprite(width-335,height-55,10,30);
+      balaInimigo=createSprite(width-285,height-55,10,30);
       balaInimigo.addImage(balaInimigoImg);
       balaInimigo.scale=0.01;
       balaInimigo.visible=false;
@@ -84,13 +84,13 @@ class Game {
       this.entrada_cowboy.position(width/3-30, height-90);
       
       this.entrada_inimigo.class("numberInput");
-      this.entrada_inimigo.position(width-450, height-90);
+      this.entrada_inimigo.position(width-400, height-90);
 
       this.botao_cowboy.class("playButton");
       this.botao_cowboy.position(width/3-30, height-150);
       
       this.botao_inimigo.class("playButton");
-      this.botao_inimigo.position(width-450, height-150);
+      this.botao_inimigo.position(width-400, height-150);
 
       this.reset.class("resetButton");
       this.reset.position(width-200, 50);
@@ -110,13 +110,14 @@ class Game {
   
       Player.getPlayersInfo();
 
-      this.gameMousePressed();
       
     if (allPlayers !== undefined) 
     {
         //alterar a imagem
         console.log("players definidos");
         image(fundoIMG, 0, 0, width, height);
+
+        this.gameMousePressed();
 
         //this.showLeaderboard();
     
@@ -127,8 +128,8 @@ class Game {
           index = index + 1;
 
           //exibição dos personagens
-          var x = allPlayers[plr].balaX;
-          var y = allPlayers[plr].balaY;
+          var x = allPlayers[plr].positionX;
+          var y = allPlayers[plr].positionY;
 
           jogadores[index-1].position.x = x;
           jogadores[index-1].position.y = y;
@@ -149,12 +150,10 @@ class Game {
     
           this.confere(codigoInimigo,balaInimigo);
 
-          if(gameState === 2){
-            this.balaMovendo = true;
+          //if(gameState === 2){
+            //this.balaMovendo = true;
             this.tiro();
-          }
-          
-    
+         // }
           
         drawSprites();
       }//if allPlayers
@@ -163,18 +162,22 @@ class Game {
     tiro(){
       var players = Object.values(allPlayers);
       if(players[0].time < players[1].time){
+        player.positionX += 18;
         console.log("cowboy atirou");
-        player.balaX += 18;
-        indio.changeImage("indioB");
+        player.update();
+        this.mensagemFinal.html(`${players[0].name} venceu!`);
+        //indio.changeImage("indioB");
         //this.showLeaderboard();
         //setTimeout(() => {
         //  this.end();
        // }, 10000);
       }
       if(players[1].time < players[0].time){
+        player.positionX -= 18;
         console.log("inimigo atirou");
-        player.balaX -= 18;
-        indio.changeImage("indioC");
+        player.update();
+        this.mensagemFinal.html(`${players[1].name} venceu!`);
+        //indio.changeImage("indioC");
         // this.showLeaderboard();
        // setTimeout(() => {
        //   this.end();
@@ -230,7 +233,6 @@ class Game {
       }//numeracaoInimigo
       
     confere(personagem,tiro){
-      var players = Object.values(allPlayers);
       if(personagem.length===3 && codigo.length===3)
        {
          if(JSON.stringify(codigo)===JSON.stringify(personagem))
@@ -242,15 +244,14 @@ class Game {
             tempoCowboy = player.time;
             console.log("tempo Cowboy: "+tempoCowboy);
             player.update();
-            gameState = 2;
+            //gameState = 2;
           }
           if(tiro===balaInimigo){
             player.time = millis();
-            console.log("tempo Inimigo: "+tempoInimigo);
             tempoInimigo = player.time;
-            //players[1].time = tempoInimigo;
+            console.log("tempo Inimigo: "+tempoInimigo);
             player.update();
-            gameState = 2;
+            //gameState = 2;
           }
           console.log("conferência de string");
         }

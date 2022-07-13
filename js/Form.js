@@ -2,15 +2,15 @@ class Form {
     constructor() {
       this.input = createInput("").attribute("placeholder", "Digite Seu Nome");
       this.playButton = createButton("Jogar");
-      this.title = createElement("h2","Cowboy Game");
+      this.title = createElement("h2","Cowboy </br> Game");
       this.greeting = createElement("h2");
     }
   
     setElementsPosition() {
-      this.title.position(width/4, height/10);
-      this.input.position(width/2 - 110, height/2 - 80);
-      this.playButton.position(width/2 - 90, height/2 - 20);
-      this.greeting.position(width/2 - 300, height/2 - 100);
+      this.title.position(width/3, height/20);
+      this.input.position(width/2-100, height-250);
+      this.playButton.position(width/2 - 90, height-200);
+      this.greeting.position(width/2 - 300, height-300);
     }
   
     setElementsStyle() {
